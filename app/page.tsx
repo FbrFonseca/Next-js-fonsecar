@@ -1,12 +1,16 @@
 "use client"
-import { useEffect, useState } from 'react'
-import { CarCard, CustomFilter, Hero, SearchBar, ShowMore } from '@/components';
-import { fuels, yearsOfProduction } from '@/constants';
-import { fetchCars } from "@/utils";
+
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 
+import { fetchCars } from "@/utils";
+import { fuels, yearsOfProduction } from '@/constants';
+import { CarCard, ShowMore, SearchBar, CustomFilter, Hero } from '@/components';
+
+
+
 export default function Home() {
-  const [allCars, setAllCars] = useState([]);
+  const [allCars, setAllCars] = useState<carState>([]);
   const [loading, setLoading] = useState(false);
 
   //search states
@@ -17,7 +21,7 @@ export default function Home() {
   const [fuel, setFuel] = useState("");
   const [year, setYear] = useState(2022);
 
-  //pagination states
+  //limit states
   const [limit, setLimit] = useState(10);
 
   const getCars = async () => {
@@ -65,8 +69,8 @@ export default function Home() {
           />
 
           <div className="home__filter-container">
-            <CustomFilter title="fuel" options={fuels} setFilter={setFuel}/>
-            <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/>
+            <CustomFilter options={fuels} setFilter={setFuel}/>
+            <CustomFilter options={yearsOfProduction} setFilter={setYear}/>
           </div>
         </div>
 
