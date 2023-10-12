@@ -1,3 +1,4 @@
+import { ShowMore } from '@/components';
 import CarCard from '@/components/CarCard';
 import CustomFilter from '@/components/CustomFilter';
 import Hero from '@/components/Hero';
@@ -44,6 +45,12 @@ export default async function Home({ searchParams }) {
                 <CarCard car={car} />
               ))}
             </div>
+
+            <ShowMore 
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
+
           </section>
         ) : (
           <div className="home__error-container">
